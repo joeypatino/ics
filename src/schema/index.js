@@ -20,16 +20,18 @@ const durationSchema = Joi.object().keys({
 
 const contactSchema = Joi.object().keys({
   name: Joi.string(),
-  email: Joi.string().email({ tlds: { allow: false } }),
+  email: Joi.string().email({tlds: {allow: false}}),
   rsvp: Joi.boolean(),
   dir: Joi.string().uri(),
   partstat: Joi.string(),
-  role: Joi.string()
+  role: Joi.string(),
+  sentBy: Joi.string()
 })
 
 const organizerSchema = Joi.object().keys({
   name: Joi.string(),
-  email: Joi.string().email({ tlds: { allow: false } })
+  email: Joi.string().email({tlds: {allow: false}}),
+  sentBy: Joi.string()
 })
 
 const alarmSchema = Joi.object().keys({
@@ -64,7 +66,7 @@ const schema = Joi.object().keys({
   endOutputType: Joi.string().regex(/utc|local/),
   description: Joi.string(),
   url: Joi.string().uri(),
-  geo: Joi.object().keys({ lat: Joi.number(), lon: Joi.number() }),
+  geo: Joi.object().keys({lat: Joi.number(), lon: Joi.number()}),
   location: Joi.string(),
   status: Joi.string().regex(/TENTATIVE|CANCELLED|CONFIRMED/),
   categories: Joi.array().items(Joi.string()),
@@ -79,6 +81,6 @@ const schema = Joi.object().keys({
 }).xor('end', 'duration')
 
 export default function validateEvent(candidate) {
-  const { error = null, value } = schema.validate(candidate)
-  return { error, value }
+  const {error = null, value} = schema.validate(candidate)
+  return {error, value}
 }
