@@ -31,7 +31,8 @@ var contactSchema = _joi["default"].object().keys({
   rsvp: _joi["default"]["boolean"](),
   dir: _joi["default"].string().uri(),
   partstat: _joi["default"].string(),
-  role: _joi["default"].string()
+  role: _joi["default"].string(),
+  sentBy: _joi["default"].string()
 });
 
 var organizerSchema = _joi["default"].object().keys({
@@ -40,7 +41,8 @@ var organizerSchema = _joi["default"].object().keys({
     tlds: {
       allow: false
     }
-  })
+  }),
+  sentBy: _joi["default"].string()
 });
 
 var alarmSchema = _joi["default"].object().keys({
