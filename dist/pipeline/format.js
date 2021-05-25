@@ -42,7 +42,11 @@ function formatEvent() {
   icsFormat += 'VERSION:2.0\r\n';
   icsFormat += 'CALSCALE:GREGORIAN\r\n';
   icsFormat += (0, _utils.foldLine)("PRODID:".concat(productId)) + '\r\n';
-  icsFormat += (0, _utils.foldLine)("METHOD:".concat(method)) + '\r\n';
+
+  if (method) {
+    icsFormat += (0, _utils.foldLine)("METHOD:".concat(method)) + '\r\n';
+  }
+
   icsFormat += calName ? (0, _utils.foldLine)("X-WR-CALNAME:".concat(calName)) + '\r\n' : '';
   icsFormat += "X-PUBLISHED-TTL:PT1H\r\n";
   icsFormat += 'BEGIN:VEVENT\r\n';

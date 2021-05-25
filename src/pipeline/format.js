@@ -48,7 +48,9 @@ export default function formatEvent(attributes = {}) {
   icsFormat += 'VERSION:2.0\r\n'
   icsFormat += 'CALSCALE:GREGORIAN\r\n'
   icsFormat += foldLine(`PRODID:${productId}`) + '\r\n'
-  icsFormat += foldLine(`METHOD:${method}`) + '\r\n'
+  if (method) {
+    icsFormat += foldLine(`METHOD:${method}`) + '\r\n'
+  }
   icsFormat += calName ? (foldLine(`X-WR-CALNAME:${calName}`) + '\r\n') : ''
   icsFormat += `X-PUBLISHED-TTL:PT1H\r\n`
   icsFormat += 'BEGIN:VEVENT\r\n'
